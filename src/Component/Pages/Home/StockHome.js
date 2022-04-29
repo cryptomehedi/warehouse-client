@@ -1,9 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useProductLoad from '../../hooks/UseProductLoad';
 
 const StockHome = () => {
     const [products] = useProductLoad()
+    const navigate = useNavigate()
+    const navigateToServiceDetail = id => {
+        navigate(`/stock/${id}`)
+    }
     return (
         <div className="bg-white">
             <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -22,14 +26,14 @@ const StockHome = () => {
                             <div className="mt-4 flex justify-between">
                                 <div>
                                     <h3 className="text-sm text-gray-700">
-                                        <Link to='/'>
-                                            <span aria-hidden="true" className="absolute inset-0" />
-                                            Name: {product.name}
-                                        </Link>
+                                        Name: {product.name}
                                     </h3>
                                     <p className="mt-1 text-sm text-gray-500">Stock: {product.stock}</p>
                                 </div>
                                 <p className="text-sm font-medium text-gray-900">Price: ${product.price}</p>
+                            </div>
+                            <div className="text-center">
+                                <button onClick={()=> navigateToServiceDetail(product._id)} className="bg-gray-400 mt-4 hover:bg-green-400 hover:text-white hover:font-medium w-full p-1 rounded">See Details</button>
                             </div>
                         </div>
                     ))}

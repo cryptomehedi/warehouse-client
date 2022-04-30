@@ -21,7 +21,7 @@ const StockDet = () => {
                     <p> <span className='font-medium text-xl'> Name:</span> <span className='font-medium'> {name}</span></p>
                     <p> <span className='font-medium text-xl'> Seller:</span> <span className='font-medium'> {seller}</span></p>
                     <p> <span className='font-medium text-xl'> Price:</span> <span className='font-medium'> ${price}</span></p>
-                    <p> <span className='font-medium text-xl'> Available:</span> <span className='font-medium'> {stock}</span></p>
+                    <p> <span className='font-medium text-xl'> Available:</span> <span className='font-medium'> {stock} Piece</span></p>
                 </div>
             </div>
         </div>

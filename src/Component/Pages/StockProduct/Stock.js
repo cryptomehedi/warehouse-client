@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,15 +9,15 @@ const Stock = () => {
     const [size] = useState(9)
     const [count, setCount] = useState(0)
     useEffect(() =>{
-        fetch(`https://warehouse-api-ser.herokuapp.com/pagesPd?page=${page}&size=${size}`)
-        .then(res=> res.json())
-        .then(data =>setProducts(data))
+        axios.get(`https://warehouse-api-ser.herokuapp.com/pagesPd?page=${page}&size=${size}`)
+        // .then(res=> res.json())
+        .then(data =>setProducts(data.data))
     },[page, size])
     useEffect(() => {
-        fetch('https://warehouse-api-ser.herokuapp.com/allPdCount')
-        .then(response => response.json())
+        axios.get('https://warehouse-api-ser.herokuapp.com/allPdCount')
+        // .then(response => response.json())
         .then(data => {
-            const count = data.count
+            const count = data.data.count
             setCount(count)
             const pages = Math.round(count/size)
             setPageCount(pages)
@@ -47,9 +48,7 @@ const Stock = () => {
                                     <h3 className="text-sm text-gray-700">
                                         Name: {product.name}
                                     </h3>
-                                    <p className="mt-1 text-sm text-gray-500">Stock: {product.stock}</p>
                                 </div>
-                                <p className="text-sm font-medium text-gray-900">Price: ${product.price}</p>
                             </div>
                             <div className="text-center">
                                 <button onClick={()=> navigateToServiceDetail(product._id)} className="bg-gray-400 mt-4 hover:bg-green-400 hover:text-white hover:font-medium w-full p-1 rounded">See Details</button>

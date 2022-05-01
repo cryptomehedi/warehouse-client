@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const PdAdd = () => {
-    
+    const [errorPrice , setErrorPrice] = useState('')
+    const [errorStock , setErrorStock] = useState('')
     const handleAddProduct = async e => {
         e.preventDefault();
         let name = e.target.name.value
@@ -11,12 +12,24 @@ const PdAdd = () => {
         let price = parseInt(e.target.price.value)
         let seller = e.target.seller.value
         let stock = parseInt(e.target.stock.value)
-        const allPdInfo = {img,name,price,seller,stock}
-        console.log(allPdInfo);
-        axios.post('https://warehouse-api-ser.herokuapp.com/stock', allPdInfo)
-        .then(result => console.log(result))
-        alert('product added successfully')
-        e.target.reset()
+        if(!isNaN(price)){
+            if(!isNaN(stock)){
+                const allPdInfo = {img,name,price,seller,stock}
+                axios.post('https://warehouse-api-ser.herokuapp.com/stock', allPdInfo)
+                setErrorStock('')
+                setErrorPrice('')
+                alert('product added successfully')
+                e.target.reset()
+                
+
+            }else{
+                setErrorPrice('')
+                setErrorStock('Stock Must Be Number')
+            }
+        }else{
+            setErrorStock('')
+            setErrorPrice('Price Must Be Number')
+        }
     }
 
     return (
@@ -43,9 +56,10 @@ const PdAdd = () => {
                                         
                                         <div className="col-span-6 sm:col-span-4">
                                             <label htmlFor="img" className="block text-sm font-medium text-gray-700">
-                                                Image URL
+                                                Image URL <span className="text-red-500">*</span>
                                             </label>
                                             <input
+                                                required
                                                 type="text"
                                                 name="img"
                                                 id="img"
@@ -56,9 +70,10 @@ const PdAdd = () => {
                                         
                                         <div className="col-span-6 sm:col-span-4">
                                             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                                Product Name
+                                                Product Name <span className="text-red-500">*</span>
                                             </label>
                                             <input
+                                                required
                                                 type="text"
                                                 name="name"
                                                 id="name"
@@ -69,9 +84,10 @@ const PdAdd = () => {
                                         
                                         <div className="col-span-6 sm:col-span-4">
                                             <label htmlFor="seller" className="block text-sm font-medium text-gray-700">
-                                                Seller Name
+                                                Seller Name <span className="text-red-500">*</span>
                                             </label>
                                             <input
+                                                required
                                                 type="text"
                                                 name="seller"
                                                 id="seller"
@@ -82,28 +98,32 @@ const PdAdd = () => {
 
                                         <div className="col-span-6 sm:col-span-4">
                                             <label htmlFor="price" className="block text-sm font-medium text-gray-700">
-                                                Price
+                                                Price <span className="text-red-500">*</span>
                                             </label>
                                             <input
+                                                required
                                                 type="text"
                                                 name="price"
                                                 id="price"
                                                 autoComplete="off"
                                                 className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
+                                            <p className='text-red-500 mt-2 ml-1  font-semibold'>{errorPrice}</p>
                                         </div>
 
                                         <div className="col-span-6 sm:col-span-4">
                                             <label htmlFor="stock" className="block text-sm font-medium text-gray-700">
-                                                Stock
+                                                Stock <span className="text-red-500">*</span>
                                             </label>
                                             <input
+                                                required
                                                 type="text"
                                                 name="stock"
                                                 id="stock"
                                                 autoComplete="off"
                                                 className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
+                                            <p className='text-red-500 mt-2 ml-1 font-semibold'>{errorStock}</p>
                                         </div>
                                     </div>
                                 </div>

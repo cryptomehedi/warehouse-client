@@ -95,7 +95,7 @@ const Stock = () => {
                 <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                     <div>
                         <p className="text-sm text-gray-700">
-                            Showing <span className="font-medium">{size} Products</span> Of <span className="font-medium">{count}</span> results. Page NO: <span className="font-medium">{page+1}</span>
+                            Showing <span className="font-medium">{count < 9 ? count : size} Products</span> Of <span className="font-medium">{count}</span> results. Page NO: <span className="font-medium">{page+1}</span>
                         </p>
                     </div>
                     <div>

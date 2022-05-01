@@ -93,7 +93,7 @@ const Login = () => {
                                     >
                                         Sign Up
                                     </button>
-                                    <div className='text-center font-semibold'>
+                                    <div className='text-center mt-2 font-semibold'>
                                         {
                                             loading && <Spinner text='Your Login Is Processing...' />
                                         }

@@ -104,7 +104,7 @@ const Register = () => {
                                                 className="mt-1 focus:ring-indigo-500 border py-2 px-3 hover:border-slate-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
                                             <p> <small>Password Must Be 8 Characters</small> </p>
-                                            <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{errorPass.length > 5 ? errorPass : ''}</p>
+                                            <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{errorPass}</p>
                                         </div>
 
                                         <div className="col-span-6 sm:col-span-4">
@@ -118,7 +118,7 @@ const Register = () => {
                                                 // autoComplete="password"
                                                 className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
-                                            <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{errorCon.length > 5 ? errorCon : ''}</p>
+                                            <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{errorCon}</p>
                                         </div>
                                     </div>
                                     
@@ -137,7 +137,7 @@ const Register = () => {
                                     >
                                         Sign Up
                                     </button>
-                                    <div className='text-center font-semibold'>
+                                    <div className='text-center mt-2 font-semibold'>
                                         {
                                             loading && <Spinner text='Your Registration Is Processing...' />
                                         }

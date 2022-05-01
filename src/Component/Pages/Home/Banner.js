@@ -28,7 +28,7 @@ const Banner = () => {
         }
     ]
     return (
-        <div className=''>
+        <div className='z-1'>
             <header className="relative grid grid-cols-1 md:grid-cols-2 mt-5 items-center md:mt-9 h-screen overflow-hidden">
                 <div className="relative z-30 md:text-left text-[#214967] p-2">
                     <div className='mb-2'>

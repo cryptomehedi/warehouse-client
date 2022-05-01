@@ -2,11 +2,18 @@ import React, { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react'
 import {  MenuIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 
 
 
 const Nav = () => {
+    const [user] = useAuthState(auth)
+    const SignOut = () => {
+        signOut(auth)
+    }
     return (
         <div>
             <Popover className="relative bg-white">
@@ -28,34 +35,46 @@ const Nav = () => {
                                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
                             </Popover.Button>
                         </div>
-                    <Popover.Group as="nav" className="hidden md:flex space-x-10">
-                        
-                        <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Home
-                        </Link>
-                        <Link to="/Stocks" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Stock
-                        </Link>
-                        <Link to="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Pricing
-                        </Link>
-                        <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        About
-                        </Link>
+                        <Popover.Group as="nav" className="hidden md:flex space-x-10">
+                            
+                            <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Home
+                            </Link>
+                            <Link to="/Stocks" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Stock
+                            </Link>
+                            <Link to="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Pricing
+                            </Link>
+                            <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            About
+                            </Link>
 
-                        
-                    </Popover.Group>
-                    <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                        <Link to="/login" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                        Sign in
-                        </Link>
-                        <Link
-                        to="/signup"
-                        className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-700"
-                        >
-                        Sign up
-                        </Link>
-                    </div>
+                            
+                        </Popover.Group>
+                        {
+                            user ? 
+                            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                            <button
+                            onClick={SignOut}
+                            className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-700"
+                            >
+                            Log Out
+                            </button>
+                        </div>
+                        :
+                        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                            <Link to="/login" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                            Sign in
+                            </Link>
+                            <Link
+                            to="/signup"
+                            className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-700"
+                            >
+                            Sign up
+                            </Link>
+                        </div>
+                        }
                     </div>
                 </div>
 

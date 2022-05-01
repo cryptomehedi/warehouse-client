@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Switch } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
+import auth from '../../../firebase.init';
+import Spinner from '../../Common-Items/Spinner';
 
 const Register = () => {
+    const [ createUserWithEmailAndPassword, user, loading, error1 ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification : true});
+    const [updateProfile, updating, error2] = useUpdateProfile(auth);
+    const [check , setCheck] = useState(false)
+    const [errorPass , setErrorPass] = useState('')
+    const [errorCon , setErrorCon] = useState('')
 
+    const handleEmailSubmit = async e => {
+        e.preventDefault();
 
+        const displayName= e.target.name.value
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const confirm = e.target.confirmPassword.value
+
+        if(password.length > 7){
+            if(password === confirm) {
+                setErrorPass('')
+                setErrorCon('')
+                await  createUserWithEmailAndPassword(email , password)
+                await updateProfile({ displayName });
+                e.target.reset()
+                alert(`Congratulations ! "${displayName}" Please Confirm Your Email Address`)
+                
+            }else{
+                setErrorCon("Password Didn't Matched")
+                setErrorPass('')
+            }
+        }else{
+            setErrorPass('Password Must Be 8 Characters')
+            setErrorCon('')
+        }
+    }
+    
     return (
         <>
             <div className="hidden sm:block" aria-hidden="true">
@@ -23,32 +57,19 @@ const Register = () => {
                     </div>
                 </div>
                     <div className="mt-5 md:mt-0 md:col-span-2">
-                        <form>
+                        <form onSubmit={handleEmailSubmit}>
                             <div className="shadow overflow-hidden sm:rounded-md">
                                 <div className="px-4 py-5 bg-white sm:p-6">
                                     <div className="grid grid-cols-6 gap-6">
-                                        <div className="col-span-6 sm:col-span-3">
-                                            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                                                First name
+                                        <div className="col-span-6 sm:col-span-4">
+                                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                                Your name
                                             </label>
                                             <input
                                                 type="text"
-                                                name="first-name"
-                                                id="first-name"
-                                                autoComplete="given-name"
-                                                className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
-                                            />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-3">
-                                            <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                                                Last name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="last-name"
-                                                id="last-name"
-                                                autoComplete="family-name"
+                                                name="name"
+                                                id="name"
+                                                autoComplete="name"
                                                 className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
                                         </div>
@@ -59,8 +80,8 @@ const Register = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                name="email-address"
-                                                id="email-address"
+                                                name="email"
+                                                id="email"
                                                 autoComplete="email"
                                                 className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
@@ -78,6 +99,7 @@ const Register = () => {
                                                 className="mt-1 focus:ring-indigo-500 border py-2 px-3 hover:border-slate-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
                                             <p> <small>Password Must Be 8 Characters</small> </p>
+                                            <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{errorPass.length > 5 ? errorPass : ''}</p>
                                         </div>
 
                                         <div className="col-span-6 sm:col-span-4">
@@ -91,84 +113,33 @@ const Register = () => {
                                                 // autoComplete="password"
                                                 className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-3">
-                                            <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                                                Country
-                                            </label>
-                                            <select
-                                                id="country"
-                                                name="country"
-                                                autoComplete="country-name"
-                                                className="mt-1 block w-full py-2 px-3 border border-gray-400  bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 hover:border-slate-500 focus:border-indigo-500 sm:text-sm"
-                                            >
-                                                <option>Bangladesh</option>
-                                            </select>
-                                        </div>
-
-                                        <div className="col-span-6">
-                                            <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                                                Street address
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="street-address"
-                                                id="street-address"
-                                                autoComplete="street-address"
-                                                className="mt-1 focus:ring-indigo-500 border py-2 px-3 hover:border-slate-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
-                                            />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                                            <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                                City
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="city"
-                                                id="city"
-                                                autoComplete="address-level2"
-                                                className="mt-1 focus:ring-indigo-500 border py-2 px-3 hover:border-slate-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
-                                            />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                            <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                                                Region
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="region"
-                                                id="region"
-                                                autoComplete="address-level1"
-                                                className="mt-1 focus:ring-indigo-500 border py-2 px-3 hover:border-slate-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
-                                            />
-                                        </div>
-
-                                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                            <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                                                ZIP / Postal code
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="postal-code"
-                                                id="postal-code"
-                                                autoComplete="postal-code"
-                                                className="mt-1 focus:ring-indigo-500 border py-2 px-3 hover:border-slate-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
-                                            />
+                                            <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{errorCon.length > 5 ? errorCon : ''}</p>
                                         </div>
                                     </div>
                                     
                                 </div>
-                                <Switch className='ml-1 md:ml-10 wrap' shape="fill">Accept WareHouse Terms & Conditions</Switch>
+                                <Switch onClick={() =>setCheck(!check)} className='ml-1 md:ml-10 wrap' shape="fill"> <span className={check ? "text-green-400" : "text-red-600"}>Accept WareHouse Terms & Conditions</span> </Switch>
+                                <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{error1?.message.length > 6 ? error1?.message : error2?.message}</p>
                                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                     <button
+                                        disabled={!check}
                                         type="submit"
-                                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className={check ? 
+                                            "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            : 
+                                            "inline-flex disabled:opacity-50 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600  cursor-not-allowed"
+                                        }
                                     >
                                         Sign Up
                                     </button>
+                                    <div className='text-center font-semibold'>
+                                        {
+                                            loading && <Spinner text='Your Registration Is Processing...' />
+                                        }
+                                        {
+                                            updating && <Spinner text='Your Registration Is Processing...' />
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </form>

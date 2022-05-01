@@ -39,7 +39,9 @@ const Register = () => {
             setErrorCon('')
         }
     }
-    
+    if(user){
+        console.log(user);
+    }
     return (
         <>
             <div className="hidden sm:block" aria-hidden="true">
@@ -52,7 +54,7 @@ const Register = () => {
                 <div className="md:col-span-1">
                     <div className="px-4 sm:px-0">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">Register</h3>
-                        <p className="mt-1 text-sm text-gray-600">Use a Valid Information where you can receive mail & future.</p>
+                        <p className="mt-1 text-sm text-gray-600">Use a Valid Information where you can receive mail & Future Information.</p>
                         <p>Already Registered <Link className="font-semibold text-[#214967] hover:text-indigo-500" to="/login">Login Here</Link></p>
                     </div>
                 </div>
@@ -120,7 +122,7 @@ const Register = () => {
                                 </div>
                                 <Switch onClick={() =>setCheck(!check)} className='ml-1 md:ml-10 wrap' shape="fill"> <span className={check ? "text-green-400" : "text-red-600"}>Accept WareHouse Terms & Conditions</span> </Switch>
                                 <p className='text-red-500 mt-2 ml-1 md:ml-10 font-semibold'>{error1?.message.length > 6 ? error1?.message : error2?.message}</p>
-                                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                <div className="px-4 py-3 lg:mr-64 bg-gray-50 text-right sm:px-6">
                                     <button
                                         disabled={!check}
                                         type="submit"

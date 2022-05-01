@@ -23,8 +23,8 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Register/>} />
           <Route path="/about" element={<About/>} />
-          <Route path="/add" element={<PdAdd/>} />
-          <Route path="/del" element={<ManegeProduct/>} />
+          <Route path="/add" element={<RequireAuth><PdAdd/></RequireAuth>} />
+          <Route path="/del" element={<RequireAuth><ManegeProduct/></RequireAuth>} />
         </Routes>
       </div>
       <Footer/>

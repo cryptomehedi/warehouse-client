@@ -56,6 +56,13 @@ const Nav = () => {
                         {
                             user ? 
                             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                            
+                            <Link to="/add" className="whitespace-nowrap mr-2 text-base font-medium text-gray-500 hover:text-gray-900">
+                            Add Items
+                            </Link>
+                            <Link to="/del" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                            Delete Items
+                            </Link>
                             <button
                             onClick={SignOut}
                             className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-700"
@@ -126,12 +133,21 @@ const Nav = () => {
                                 {
                                     user ? 
                                     <div>
+                                        <div className="grid grid-cols-2 mb-5 gap-y-4 gap-x-8">
+                                            <Link to="/add" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                                Add Items
+                                            </Link>
+                                            <Link to="/del" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                                Delete Items
+                                            </Link>
+                                        </div>
                                         <button
                                         onClick={SignOut}
                                         className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-700"
                                         >
                                         Log Out
                                         </button>
+                                        
                                     </div>
                                     :
                                     <div>

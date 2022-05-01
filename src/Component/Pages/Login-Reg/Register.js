@@ -5,6 +5,7 @@ import '@djthoms/pretty-checkbox';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Spinner from '../../Common-Items/Spinner';
+import SocialLogin from './SocialLogin';
 
 const Register = () => {
     const [ createUserWithEmailAndPassword, user, loading, error1 ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification : true});
@@ -59,6 +60,7 @@ const Register = () => {
                         <h3 className="text-lg font-medium leading-6 text-gray-900">Register</h3>
                         <p className="mt-1 text-sm text-gray-600">Use a Valid Information where you can receive mail & Future Information.</p>
                         <p>Already Registered <Link className="font-semibold text-[#214967] hover:text-indigo-500" to="/login">Login Here</Link></p>
+                        <SocialLogin/>
                     </div>
                 </div>
                     <div className="mt-5 md:mt-0 md:col-span-2">

@@ -3,6 +3,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Spinner from '../../Common-Items/Spinner';
+import SocialLogin from './SocialLogin';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
@@ -36,10 +37,10 @@ const Login = () => {
         <>
             <div className="hidden sm:block" aria-hidden="true">
                 <div className="py-5">
-                <div className="border-t border-gray-200" />
+                    <div className="border-t border-gray-200" />
                 </div>
             </div>
-            <div className="mt-10 sm:mt-0">
+            <dv className="mt-10 sm:mt-0">
                 <div className="md:grid md:grid-cols-3 md:gap-6">
                 <div className="md:col-span-1">
                     <div className="px-4 sm:px-0">
@@ -47,7 +48,9 @@ const Login = () => {
                         <p className="mt-1 text-sm text-gray-600">Use a Valid Information For Login.</p>
                         <p>New Here ? Please <Link className="font-semibold text-[#214967] hover:text-indigo-500" to="/signup">Sign Up Here</Link></p>
                     </div>
+                    <SocialLogin />
                 </div>
+                
                     <div className="mt-5 md:mt-0 md:col-span-2">
                         <form onSubmit={handleLogin}>
                             <div className="shadow overflow-hidden sm:rounded-md">
@@ -106,7 +109,7 @@ const Login = () => {
                         </form>
                     </div>
                 </div>
-            </div>
+            </dv>
         </>
     );
 };

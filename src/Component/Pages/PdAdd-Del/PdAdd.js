@@ -32,7 +32,7 @@ const PdAdd = () => {
                     <div className="px-4 sm:px-0">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">Add Product</h3>
                         <p className="mt-1 text-sm text-gray-600">Use a Valid Information For Adding Product.</p>
-                        <p>Want To Delete <Link className="font-semibold text-[#214967] hover:text-indigo-500" to="/del">Click Here</Link></p>
+                        <p>Want To Delete? Please <Link className="font-semibold text-[#214967] hover:text-indigo-500" to="/del">Click Here</Link></p>
                     </div>
                 </div>
                     <div className="mt-5 md:mt-0 md:col-span-2">

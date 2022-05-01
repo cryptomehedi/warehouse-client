@@ -6,6 +6,7 @@ import About from "./Component/Pages/About/About";
 import Home from "./Component/Pages/Home/Home";
 import Login from "./Component/Pages/Login-Reg/Login";
 import Register from "./Component/Pages/Login-Reg/Register";
+import ManegeProduct from "./Component/Pages/PdAdd-Del/ManegeProduct";
 import PdAdd from "./Component/Pages/PdAdd-Del/PdAdd";
 import Stock from "./Component/Pages/StockProduct/Stock";
 import StockDet from "./Component/Pages/StockProduct/StockDet";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signup" element={<Register/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/add" element={<PdAdd/>} />
+          <Route path="/del" element={<ManegeProduct/>} />
         </Routes>
       </div>
       <Footer/>

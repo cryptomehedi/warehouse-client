@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import { Helmet } from 'react-helmet-async';
 
 const Stock = () => {
     const [products, setProducts] = useState([])
@@ -51,6 +52,9 @@ const Stock = () => {
 
     return (
         <div className="bg-white">
+            <Helmet>
+                <title>Stock - WareHouse</title>
+            </Helmet>
             <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Your Available Stock Product</h2>
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">

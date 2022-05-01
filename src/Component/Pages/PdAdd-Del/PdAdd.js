@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 const PdAdd = () => {
@@ -34,6 +35,9 @@ const PdAdd = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Add Product - WareHouse</title>
+            </Helmet>
             <div className="hidden sm:block" aria-hidden="true">
                 <div className="py-5">
                 <div className="border-t border-gray-200" />

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Spinner from '../../Common-Items/Spinner';
@@ -35,6 +36,9 @@ const Login = () => {
     }
     return (
         <>
+            <Helmet>
+                <title>Login - WareHouse</title>
+            </Helmet>
             <div className="hidden sm:block" aria-hidden="true">
                 <div className="py-5">
                     <div className="border-t border-gray-200" />

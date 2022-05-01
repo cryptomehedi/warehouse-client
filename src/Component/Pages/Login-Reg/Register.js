@@ -6,6 +6,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import auth from '../../../firebase.init';
 import Spinner from '../../Common-Items/Spinner';
 import SocialLogin from './SocialLogin';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     const [ createUserWithEmailAndPassword, user, loading, error1 ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification : true});
@@ -48,6 +49,9 @@ const Register = () => {
     }
     return (
         <>
+            <Helmet>
+                <title>Register - WareHouse</title>
+            </Helmet>
             <div className="hidden sm:block" aria-hidden="true">
                 <div className="py-5">
                 <div className="border-t border-gray-200" />

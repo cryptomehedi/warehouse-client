@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import useProductLoad from '../../hooks/UseProductLoad';
 
@@ -18,8 +19,11 @@ const ManegeProduct = () => {
         }
     }
     return (
-        <div>
+        
             <>
+                <Helmet>
+                <title>Manege Product - WareHouse</title>
+                </Helmet>
                 <div className="hidden sm:block" aria-hidden="true">
                     <div className="py-5">
                     <div className="border-t border-gray-200" />
@@ -56,10 +60,6 @@ const ManegeProduct = () => {
                     </div>
                 </div>
             </>
-
-
-            
-        </div>
     );
 };
 

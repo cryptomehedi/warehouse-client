@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import usePDId from '../../hooks/usePDId';
 
@@ -46,6 +47,9 @@ const StockDet = () => {
     }
     return (
         <div className='md:flex justify-evenly items-center mt-11'>
+            <Helmet>
+                <title>Stock Details - WareHouse</title>
+            </Helmet>
             <div className='flex justify-center mb-8'>
                 <img className='rounded-lg w-52 md:w-80' src={img} alt="" />
             </div>

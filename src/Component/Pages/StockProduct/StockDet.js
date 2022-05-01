@@ -22,7 +22,6 @@ const StockDet = () => {
         }
         const delivery = {img,name,price,seller,stock}
         axios.put(`https://warehouse-api-ser.herokuapp.com/stock/${productId}`, delivery)
-        .then(data=> console.log(data))
         if(e){
             alert('Product Delivery Successful')
         }else{

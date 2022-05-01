@@ -23,7 +23,7 @@ const Feature = () => {
         }
     ]
     return (
-        <div className="py-12 bg-gray-200 rounded-xl">
+        <div className="py-12 m-2 bg-slate-50 shadow-lg rounded-xl">
                 <div className="max-w-7xl px-4 md:px-6 lg:px-8">
                     <div  className=''>
                         <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">

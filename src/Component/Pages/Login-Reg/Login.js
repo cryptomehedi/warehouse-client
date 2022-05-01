@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Spinner from '../../Common-Items/Spinner';
 
@@ -8,6 +8,9 @@ const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(auth);
     const emailRef = useRef('')
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate()
 
     const handleLogin = async e => {
         e.preventDefault()
@@ -27,7 +30,7 @@ const Login = () => {
         // }
     }
     if(user){
-        console.log(user);
+        navigate(from, { replace: true })
     }
     return (
         <>
@@ -41,7 +44,7 @@ const Login = () => {
                 <div className="md:col-span-1">
                     <div className="px-4 sm:px-0">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">Login</h3>
-                        <p className="mt-1 text-sm text-gray-600">Use a Valid Information For Login & Future Information.</p>
+                        <p className="mt-1 text-sm text-gray-600">Use a Valid Information For Login.</p>
                         <p>New Here ? Please <Link className="font-semibold text-[#214967] hover:text-indigo-500" to="/signup">Sign Up Here</Link></p>
                     </div>
                 </div>
@@ -57,7 +60,7 @@ const Login = () => {
                                             </label>
                                             <input
                                                 ref={emailRef}
-                                                type="text"
+                                                type="email"
                                                 name="email"
                                                 id="email"
                                                 autoComplete="email"

@@ -7,7 +7,7 @@ const useProductLoad =() => {
         axios.get('https://warehouse-api-ser.herokuapp.com/stockAllPd')
         .then(data => setProducts(data.data))
     },[])
-    return [products]
+    return [products , setProducts]
 }
 
 export default useProductLoad

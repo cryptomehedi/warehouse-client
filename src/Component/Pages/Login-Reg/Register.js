@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Switch } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
@@ -12,6 +12,9 @@ const Register = () => {
     const [check , setCheck] = useState(false)
     const [errorPass , setErrorPass] = useState('')
     const [errorCon , setErrorCon] = useState('')
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate()
 
     const handleEmailSubmit = async e => {
         e.preventDefault();
@@ -40,7 +43,7 @@ const Register = () => {
         }
     }
     if(user){
-        console.log(user);
+        navigate(from, { replace: true })
     }
     return (
         <>
@@ -81,7 +84,7 @@ const Register = () => {
                                                 Email address
                                             </label>
                                             <input
-                                                type="text"
+                                                type="email"
                                                 name="email"
                                                 id="email"
                                                 autoComplete="email"

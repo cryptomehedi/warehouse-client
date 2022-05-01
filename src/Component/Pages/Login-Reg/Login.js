@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -81,7 +81,7 @@ const Login = () => {
                                         
                                     </div>
                                 </div>
-                                <div onClick={handelRestPass} className="text-red-400 mt-3 font-medium cursor-pointer" >Forget Password</div>
+                                <div onClick={handelRestPass} className="text-red-400 ml-4 md:ml-5 font-medium cursor-pointer" >Forget Password</div>
                                 <p className='text-red-500 ml-1 md:ml-10 font-semibold'>{error?.message.length > 6 ? error?.message : error1?.message}</p>
                                 <div className="px-4 py-3 bg-gray-50 lg:mr-64 text-right sm:px-6">
                                     <button

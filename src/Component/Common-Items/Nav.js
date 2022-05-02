@@ -6,6 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 import { XIcon } from '@heroicons/react/solid';
+import logo from '../../Img/warehouse-logo.svg'
 
 
 
@@ -25,7 +26,7 @@ const Nav = () => {
                                 <span className="sr-only">Workflow</span>
                                 <img
                                     className="h-8 w-auto sm:h-10"
-                                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                                    src={logo}
                                     alt=""
                                 />
                             </Link>
@@ -44,8 +45,8 @@ const Nav = () => {
                             <Link to="/Stocks" className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Stock
                             </Link>
-                            <Link to="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Pricing
+                            <Link to="blogs" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Blogs
                             </Link>
                             <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
                             About
@@ -102,7 +103,7 @@ const Nav = () => {
                                     <div>
                                         <img
                                             className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                                            src={logo}
                                             alt="Workflow"
                                         />
                                     </div>
@@ -122,8 +123,8 @@ const Nav = () => {
                                     <Link to="/stocks" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Stock
                                     </Link>
-                                    <Link to="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                    Pricing
+                                    <Link to="/blogs" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                    Blogs
                                     </Link>
                                     <Link to="/about" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     About

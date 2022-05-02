@@ -111,7 +111,7 @@ const Footer = () => {
                 </div>
                 <div className="text-center p-4 bg-[rgba(0, 0, 0, 0.2)]" >
                 Copyright &copy; {new Date().getFullYear()}
-                    <a className="text-orange-200 hover:text-orange-400" href="https://cryptomehedi.com/"> Mehedi </a> | All Rights Reserved
+                    <span className="text-orange-200 hover:text-orange-400"> WareHouse </span> | All Rights Reserved
                 </div>
             </footer>
         </div>

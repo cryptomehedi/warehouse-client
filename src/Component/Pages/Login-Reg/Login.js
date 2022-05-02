@@ -25,11 +25,12 @@ const Login = () => {
     const handelRestPass = async e =>{
         const email = emailRef.current.value
         await sendPasswordResetEmail(email);
-        alert("Reset Password Email Sent")
+        
         // toast("Wow so easy !")
-        // if(!error1?.message){
-        //     toast("Reset Password Email Sent")
-        // }
+        if(error1?.message < 5){
+            alert("Reset Password Email Sent")
+            // toast("Reset Password Email Sent")
+        }
     }
     if(user){
         navigate(from, { replace: true })
@@ -66,6 +67,7 @@ const Login = () => {
                                                 Email address
                                             </label>
                                             <input
+                                                required
                                                 ref={emailRef}
                                                 type="email"
                                                 name="email"
@@ -80,6 +82,7 @@ const Login = () => {
                                                 Password
                                             </label>
                                             <input
+                                                required
                                                 type="password"
                                                 name="password"
                                                 id="password"
@@ -92,7 +95,7 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <div onClick={handelRestPass} className="text-red-400 ml-4 md:ml-5 font-medium cursor-pointer" >Forget Password</div>
-                                <p className='text-red-500 ml-1 md:ml-10 font-semibold'>{error?.message.length > 6 ? error?.message : error1?.message}</p>
+                                <p className='text-red-500 ml-5 duration-1000 delay-700 font-semibold'>{error?.message.length > 6 ? error?.message : error1?.message}</p>
                                 <div className="px-4 py-3 bg-gray-50 lg:mr-64 text-right sm:px-6">
                                     <button
                                         type="submit"

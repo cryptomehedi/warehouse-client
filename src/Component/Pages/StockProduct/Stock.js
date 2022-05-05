@@ -11,13 +11,11 @@ const Stock = () => {
     const [size] = useState(9)
     const [count, setCount] = useState(0)
     useEffect(() =>{
-        axios.get(`https://warehouse-api-ser.herokuapp.com/pagesPd?page=${page}&size=${size}`)
-        // .then(res=> res.json())
+        axios.get(`http://localhost:4000/pagesPd?page=${page}&size=${size}`)
         .then(data =>setProducts(data.data))
     },[page, size])
     useEffect(() => {
-        axios.get('https://warehouse-api-ser.herokuapp.com/allPdCount')
-        // .then(response => response.json())
+        axios.get('http://localhost:4000/allPdCount')
         .then(data => {
             const count = data.data.count
             setCount(count)
@@ -99,7 +97,7 @@ const Stock = () => {
                 <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                     <div>
                         <p className="text-sm text-gray-700">
-                            Showing <span className="font-medium">{count < 9 ? count : size} Products</span> Of <span className="font-medium">{count}</span> results. Page NO: <span className="font-medium">{page+1}</span>
+                            Showing <span className="font-medium">{products.length} Products</span> Of <span className="font-medium">{count}</span> results. Page NO: <span className="font-medium">{page+1}</span>
                         </p>
                     </div>
                     <div>
@@ -140,5 +138,3 @@ const Stock = () => {
 };
 
 export default Stock;
-
-// {[...Array(pageCount).keys()].map(number => <button className={page === number ? 'selected' : ''} onClick={()=> setPage(number)}>{number+1}</button>)}

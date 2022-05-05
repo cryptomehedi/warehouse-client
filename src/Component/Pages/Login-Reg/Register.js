@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 import Spinner from '../../Common-Items/Spinner';
 import SocialLogin from './SocialLogin';
 import { Helmet } from 'react-helmet-async';
+import useToken from '../../API/UseToken';
 
 const Register = () => {
     const [ createUserWithEmailAndPassword, user, loading, error1 ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification : true});
@@ -14,6 +15,7 @@ const Register = () => {
     const [check , setCheck] = useState(false)
     const [errorPass , setErrorPass] = useState('')
     const [errorCon , setErrorCon] = useState('')
+    const [token] = useToken(user)
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate()
@@ -44,7 +46,7 @@ const Register = () => {
             setErrorCon('')
         }
     }
-    if(user){
+    if(token){
         navigate(from, { replace: true })
     }
     return (

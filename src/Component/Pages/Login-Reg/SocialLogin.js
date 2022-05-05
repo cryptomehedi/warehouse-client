@@ -6,16 +6,19 @@ import googleLogo from '../../../Img/Social/google-logo.png'
 import facebookLogo from '../../../Img/Social/facebook-logo.png'
 import gitHubLogo from '../../../Img/Social/github-logo.png'
 import { useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../API/UseToken';
 
 const SocialLogin = () => {
     const [user] = useAuthState(auth)
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const [signInWithGithub] = useSignInWithGithub(auth);
     const [signInWithFacebook] = useSignInWithFacebook(auth);
+    const [token] = useToken(user)
     const navigate = useNavigate()
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
-    if(user){
+    
+    if(token){
         navigate(from, { replace: true })
     }
     return (

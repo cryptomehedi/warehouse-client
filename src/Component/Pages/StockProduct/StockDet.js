@@ -4,22 +4,18 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import usePDId from '../../hooks/usePDId';
-
 const StockDet = () => {
     const {productId} = useParams()
     const [available, setAvailable] = useState(false)
     const [productDetails, setProductDetails] = usePDId(productId)
     const {img,name,price,seller,stock,} = productDetails
-        
     const handlePdUpdate = e => {
-        
         let name = productDetails.name
         let img = productDetails.img
         let price = productDetails.price
         let seller = productDetails.seller
         let quantity = productDetails.stock
         let stock 
-        
         if(e){
             if(quantity > 0 ){
                 stock = productDetails.stock - 1
@@ -31,7 +27,7 @@ const StockDet = () => {
             setAvailable(false)
         }
         const delivery = {img,name,price,seller,stock}
-        axios.put(`https://warehouse-api-ser.herokuapp.com/stock/${productId}`, delivery)
+        axios.put(`http://localhost:4000/stock/${productId}`, delivery)
         if(e){
             if(quantity > 0){
                 alert('Product Delivery Successful')
@@ -45,6 +41,7 @@ const StockDet = () => {
         delivery.stock === 0 && setAvailable(true)
         setProductDetails(delivery)
     }
+    
     return (
         <div className='md:flex justify-evenly items-center mt-11'>
             <Helmet>

@@ -6,7 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 import { XIcon } from '@heroicons/react/solid';
-import logo from '../../Img/warehouse-logo.svg'
+import logo from '../../Img/warehouse-logo-svg.svg'
 
 
 
@@ -25,7 +25,7 @@ const Nav = () => {
                             <Link to="/">
                                 <span className="sr-only">Workflow</span>
                                 <img
-                                    className="h-8 w-auto sm:h-10"
+                                    className="h-8 md:h-10"
                                     src={logo}
                                     alt=""
                                 />
@@ -47,6 +47,9 @@ const Nav = () => {
                             </Link>
                             <Link to="blogs" className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Blogs
+                            </Link>
+                            <Link to="/inventory" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Inventory
                             </Link>
                             <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
                             About
@@ -126,6 +129,9 @@ const Nav = () => {
                                     <Link to="/blogs" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Blogs
                                     </Link>
+                                    <Link to="/inventory" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                    Inventory
+                                    </Link>
                                     <Link to="/about" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     About
                                     </Link>
@@ -134,6 +140,7 @@ const Nav = () => {
                                 {
                                     user ? 
                                     <div>
+                                        <hr />
                                         <div className="grid grid-cols-2 mb-5 gap-y-4 gap-x-8">
                                             <Link to="/add" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                                 Add Items

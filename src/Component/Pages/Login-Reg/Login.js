@@ -1,14 +1,17 @@
+
 import React, { useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../API/UseToken';
 import Spinner from '../../Common-Items/Spinner';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(auth);
+    const [token] = useToken(user)
     const emailRef = useRef('')
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
@@ -29,10 +32,9 @@ const Login = () => {
         // toast("Wow so easy !")
         if(error1?.message < 5){
             alert("Reset Password Email Sent")
-            // toast("Reset Password Email Sent")
         }
     }
-    if(user){
+    if(token){
         navigate(from, { replace: true })
     }
     return (
@@ -45,7 +47,7 @@ const Login = () => {
                     <div className="border-t border-gray-200" />
                 </div>
             </div>
-            <dv className="mt-10 sm:mt-0">
+            <div className="mt-10 sm:mt-0">
                 <div className="md:grid md:grid-cols-3 md:gap-6">
                 <div className="md:col-span-1">
                     <div className="px-4 sm:px-0">
@@ -116,7 +118,7 @@ const Login = () => {
                         </form>
                     </div>
                 </div>
-            </dv>
+            </div>
         </>
     );
 };

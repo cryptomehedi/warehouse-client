@@ -1,31 +1,43 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const PdAdd = () => {
+    const [user] = useAuthState(auth)
     const [errorPrice , setErrorPrice] = useState('')
     const [errorStock , setErrorStock] = useState('')
     const handleAddProduct = async e => {
         e.preventDefault();
         let name = e.target.name.value
+        let userInfo = user.email ? user.email : user.displayName
         let img = e.target.img.value
         let price = parseInt(e.target.price.value)
         let seller = e.target.seller.value
         let stock = parseInt(e.target.stock.value)
         if(!isNaN(price)){
-            if(!isNaN(stock)){
-                const allPdInfo = {img,name,price,seller,stock}
-                axios.post('https://warehouse-api-ser.herokuapp.com/stock', allPdInfo)
-                setErrorStock('')
-                setErrorPrice('')
-                alert('product added successfully')
-                e.target.reset()
-                
-
+            if(price > 0){
+                if(!isNaN(stock)){
+                    if(stock > 0 ){
+                        const allPdInfo = {img,name,userInfo,price,seller,stock}
+                        axios.post('http://localhost:4000/stock', allPdInfo)
+                        setErrorStock('')
+                        setErrorPrice('')
+                        alert('product added successfully')
+                        e.target.reset()
+                    }else{
+                        setErrorPrice('')
+                        setErrorStock('Stock Must Be Positive Number')
+                    }
+                }else{
+                    setErrorPrice('')
+                    setErrorStock('Stock Must Be Number')
+                }
             }else{
-                setErrorPrice('')
-                setErrorStock('Stock Must Be Number')
+            setErrorStock('')
+            setErrorPrice('Price Must Be Positive Number')
             }
         }else{
             setErrorStock('')

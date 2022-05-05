@@ -3,6 +3,8 @@ import Footer from "./Component/Common-Items/Footer";
 import Header from "./Component/Common-Items/Header";
 import RequireAuth from "./Component/Common-Items/RequireAuth";
 import About from "./Component/Pages/About/About";
+import Blog from "./Component/Pages/Blog-Inventory/Blog";
+import Inventory from "./Component/Pages/Blog-Inventory/Inventory";
 import Home from "./Component/Pages/Home/Home";
 import Login from "./Component/Pages/Login-Reg/Login";
 import Register from "./Component/Pages/Login-Reg/Register";
@@ -23,6 +25,8 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Register/>} />
           <Route path="/about" element={<About/>} />
+          <Route path="/blogs" element={<Blog/>} />
+          <Route path="/inventory" element={<RequireAuth><Inventory/></RequireAuth>} />
           <Route path="/add" element={<RequireAuth><PdAdd/></RequireAuth>} />
           <Route path="/del" element={<RequireAuth><ManegeProduct/></RequireAuth>} />
         </Routes>

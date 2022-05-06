@@ -30,7 +30,6 @@ const Stock = () => {
         navigate(`/inventory/${id}`)
     }
     const handleNext = () => {
-        console.log(pageCount);
             if(pageCount -1 > page){
                 setPage( page+1)
         }

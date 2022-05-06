@@ -17,7 +17,6 @@ const StockDet = () => {
     const location = useLocation()
     let from = location.state?.from?.pathname || "/inventory";
     const navigate = useNavigate()
-    console.log(from);
 
     const [productDetails, setProductDetails] = usePDId(productId)
     const {img,name,price,seller,stock,description, _id} = productDetails
@@ -38,7 +37,6 @@ const StockDet = () => {
             }
         }else{
             const updateStock = parseInt(stockInput?.current?.value)
-            console.log(stockInput?.current?.value);
             if(!isNaN(updateStock)){
                 if(updateStock > 0){
                     stock = productDetails.stock + updateStock
@@ -69,10 +67,7 @@ const StockDet = () => {
         setProductDetails(delivery)
     }
 
-
     const deleteProduct = id =>{
-        const userInfo = user.email
-            console.log(userInfo);
         const proceed = window.confirm('are you sure you want to delete this')
         if(proceed){
             axios.delete(`https://warehouse-api-ser.herokuapp.com/stock/${id}`)
@@ -85,7 +80,7 @@ const StockDet = () => {
                     <title>Stock Details - WareHouse</title>
             </Helmet>
             {
-                productDetails._id ? <div className='md:flex justify-evenly items-center mt-11'>
+                productDetails.name ? <div className='md:flex justify-evenly items-center mt-11'>
                 
                 <div>
                 <div className='flex justify-center mb-8'>

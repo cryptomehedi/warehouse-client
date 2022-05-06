@@ -21,7 +21,6 @@ const Inventory = () => {
                 setProducts(data)
             }
             catch(error){
-                console.log("this is error",error)
                 if(error.response.status === 401 || error.response.status === 403){
                     signOut(auth)
                 }

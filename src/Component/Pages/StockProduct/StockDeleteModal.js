@@ -1,7 +1,6 @@
 import React from 'react';
 
 const StockDeleteModal = (showDelModal) => {
-    console.log(showDelModal)
     const [showModal, setShowModal] = React.useState(false);
     return (
         

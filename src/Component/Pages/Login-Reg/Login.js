@@ -16,7 +16,6 @@ const Login = () => {
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate()
-    console.log(from)
 
     const handleLogin = async e => {
         e.preventDefault()

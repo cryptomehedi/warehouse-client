@@ -1,17 +1,24 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import Spinner from '../../Common-Items/Spinner';
 import useProductLoad from '../../hooks/UseProductLoad';
 // import DeleteModal from './DeleteModal';
 
 const ManegeProduct = () => {
     const [showModal, setShowModal] = useState(true);
     const [products , setProducts] = useProductLoad()
+    const [user] = useAuthState(auth)
+    
     const handleDelModal = () => {
         console.log('first')
         // setShowModal(true)
-        return `${showModal ? 
+        return (
+            <div>
+                {showModal ? 
             <>
             {
                 console.log('first')
@@ -65,13 +72,17 @@ const ManegeProduct = () => {
                 </div>
                 <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
             </>
-        : null}`
+        : null}
+            </div>
+        )
     }
     const deleteProduct = id =>{
-        
+        const userInfo = user.email
+            console.log(userInfo);
         const proceed = window.confirm('are you sure you want to delete this')
         if(proceed){
-            axios.delete(`http://localhost:4000/stock/${id}`)
+            
+            axios.delete(`https://warehouse-api-ser.herokuapp.com/stock/${id}`)
             .then(data => {
                 if(data.data.deletedCount > 0) {
                     const remaining = products.filter(product => product._id !== id)
@@ -104,7 +115,7 @@ const ManegeProduct = () => {
                         // <DeleteModal showDelModal={showModal} />
                     }
                         <div className="mt-5 md:mt-0 md:col-span-2">
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
+                        {products.length > 0 ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                                 {
                                     products.map( (product) =>  <div className="bg-gray-100 shadow-lg hover:shadow-2xl rounded-lg p-1 m-3" key={product._id}>
                                                                     <div className='flex justify-center mb-2'>
@@ -124,6 +135,7 @@ const ManegeProduct = () => {
                                                                 )
                                 }
                             </div>
+                            : <div className="text-center mt-9"><Spinner text='Please wait! Your product is Loading......'/></div>}
                         </div>
                     </div>
                 </div>

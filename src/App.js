@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Footer from "./Component/Common-Items/Footer";
 import Header from "./Component/Common-Items/Header";
+import NotFound from "./Component/Common-Items/NotFound";
 import RequireAuth from "./Component/Common-Items/RequireAuth";
 import About from "./Component/Pages/About/About";
 import Blog from "./Component/Pages/Blog-Inventory/Blog";
@@ -20,13 +21,14 @@ function App() {
       <div className='px-4 md:px-16'>
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/stocks" element={<Stock/>} />
-          <Route path="/stock/:productId" element={<RequireAuth><StockDet/></RequireAuth>} />
+          <Route path="*" element={<NotFound/>} />
+          <Route path="/inventory" element={<Stock/>} />
+          <Route path="/inventory/:productId" element={<RequireAuth><StockDet/></RequireAuth>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Register/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/blogs" element={<Blog/>} />
-          <Route path="/inventory" element={<RequireAuth><Inventory/></RequireAuth>} />
+          <Route path="/my-items" element={<RequireAuth><Inventory/></RequireAuth>} />
           <Route path="/add" element={<RequireAuth><PdAdd/></RequireAuth>} />
           <Route path="/del" element={<RequireAuth><ManegeProduct/></RequireAuth>} />
         </Routes>

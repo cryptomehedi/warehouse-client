@@ -42,14 +42,14 @@ const Nav = () => {
                             <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Home
                             </Link>
-                            <Link to="/Stocks" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Stock
+                            <Link to="/inventory" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Inventory
                             </Link>
                             <Link to="blogs" className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Blogs
                             </Link>
-                            <Link to="/inventory" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Inventory
+                            <Link to="/my-items" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            My Items
                             </Link>
                             <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
                             About
@@ -123,14 +123,14 @@ const Nav = () => {
                                     <Link to="/" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Home
                                     </Link>
-                                    <Link to="/stocks" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                    Stock
+                                    <Link to="/inventory" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                    Inventory
                                     </Link>
                                     <Link to="/blogs" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Blogs
                                     </Link>
-                                    <Link to="/inventory" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                    Inventory
+                                    <Link to="/my-items" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                    My Items
                                     </Link>
                                     <Link to="/about" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     About

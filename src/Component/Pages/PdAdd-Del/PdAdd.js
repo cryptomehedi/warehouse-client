@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import axiosPrivate from '../../API/Axios';
 
 const PdAdd = () => {
     const [user] = useAuthState(auth)
@@ -16,13 +16,15 @@ const PdAdd = () => {
         let img = e.target.img.value
         let price = parseInt(e.target.price.value)
         let seller = e.target.seller.value
+        let description = e.target.description.value
         let stock = parseInt(e.target.stock.value)
+        
         if(!isNaN(price)){
             if(price > 0){
                 if(!isNaN(stock)){
                     if(stock > 0 ){
-                        const allPdInfo = {img,name,userInfo,price,seller,stock}
-                        axios.post('http://localhost:4000/stock', allPdInfo)
+                        const allPdInfo = {img,name,userInfo,price,seller,stock,description}
+                        axiosPrivate.post('https://warehouse-api-ser.herokuapp.com/stock', {allPdInfo, userInfo})
                         setErrorStock('')
                         setErrorPrice('')
                         alert('product added successfully')
@@ -140,6 +142,20 @@ const PdAdd = () => {
                                                 className="mt-1 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
                                             />
                                             <p className='text-red-500 mt-2 ml-1 font-semibold'>{errorStock}</p>
+                                        </div>
+
+                                        <div className="col-span-6 sm:col-span-4">
+                                            <label htmlFor="seller" className="block text-sm font-medium text-gray-700">
+                                                Description <span className="text-red-500">*</span>
+                                            </label>
+                                            <textarea
+                                                required
+                                                type="text"
+                                                name="description"
+                                                id="description"
+                                                autoComplete="off"
+                                                className="mt-1 h-20 focus:ring-indigo-500 hover:border-slate-500 border py-2 px-3 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-400 rounded-md"
+                                            />
                                         </div>
                                     </div>
                                 </div>

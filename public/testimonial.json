@@ -1,0 +1,45 @@
+[
+    {
+        "_id": "58c03ac18060197ca0b52d51",
+        "author": "Pedro Butler",
+        "img": "https://randomuser.me/api/portraits/men/10.jpg",
+        "text": "Its provided a very good quality product, Good job. ",
+        "rating": 5
+    },
+    
+    {
+        "_id": "58c08780bbb1a51e0d43a050",
+        "author": "Victor Poulsen",
+        "img": "https://randomuser.me/api/portraits/women/73.jpg",
+        "text": "There services are very impressive",
+        "rating": 5
+    },
+    {
+        "_id": "58c08796bbb1a51e0d43a051",
+        "author": "Rafael Hicks",
+        "img": "https://randomuser.me/api/portraits/men/65.jpg",
+        "text": "Really very good.I am satisfied.",
+        "rating": 4.8
+    },
+    {
+        "_id": "58c087acbbb1a51e0d43a052",
+        "author": "Malak Krogstad",
+        "img": "https://randomuser.me/api/portraits/men/23.jpg",
+        "text": "Very good quality product, They are doing good job.",
+        "rating": 4.9
+    },
+    {
+        "_id": "58c087b9bbb1a51e0d43a053",
+        "author": "Juana Nieto",
+        "img": "https://randomuser.me/api/portraits/men/33.jpg",
+        "text": "It is very comfortable.",
+        "rating": 4.5
+    },
+    {
+        "_id": "58c03af28060197ca0b52d53",
+        "author": "Rosa Fengler",
+        "img": "https://randomuser.me/api/portraits/men/95.jpg",
+        "text": "Thanks for providing me with a best quality product.",
+        "rating": 4.7
+    }
+]

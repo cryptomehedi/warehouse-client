@@ -42,9 +42,6 @@ const ManegeProduct = () => {
                             <p>Want To Add a Product? Please <Link className="font-semibold text-[#214967] hover:text-indigo-500" to="/add">Click Here</Link></p>
                         </div>
                     </div>
-                    {
-                        // <DeleteModal showDelModal={showModal} />
-                    }
                         <div className="mt-5 md:mt-0 md:col-span-2">
                         {products.length > 0 ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                                 {
@@ -55,7 +52,7 @@ const ManegeProduct = () => {
                                                                     <div className='flex justify-between px-1 items-center'>
                                                                         <div className='mr-5'>
                                                                             <p className='text-sm'>Name: {product.name}</p>
-                                                                            <p >Stock: {product.stock}</p>
+                                                                            <p>{product.stock === 0 ? <span className='text-red-500 font-medium'>Sold Out</span> : <> Quantity:  {product.stock ===1 ?  <>{product.stock} Piece</> : <>{product.stock} Pieces</>}</>}</p>
                                                                         </div>
                                                                         <button onClick={()=>{
                                                                             deleteProduct(product._id)

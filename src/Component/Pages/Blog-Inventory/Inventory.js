@@ -45,7 +45,7 @@ const Inventory = () => {
                                                 <div>
                                                     <p>Name: {product.name}</p>
                                                     <p>Price: ${product.price}</p>
-                                                    <p>Stock: {product.stock}</p>
+                                                    <p>{product.stock === 0 ? <span className='text-red-500 font-medium'>Sold Out</span> : <> Quantity:  {product.stock ===1 ?  <>{product.stock} Piece</> : <>{product.stock} Pieces</>}</>}</p>
                                                 </div>
                                             </div>
                                         </div>

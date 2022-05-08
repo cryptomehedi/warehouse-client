@@ -2,8 +2,10 @@ import axios from 'axios';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Spinner from '../../Common-Items/Spinner';
 import useProductLoad from '../../hooks/UseProductLoad';
+
 
 const ManegeProduct = () => {
     const [products , setProducts] = useProductLoad()
@@ -18,6 +20,7 @@ const ManegeProduct = () => {
                 if(data.data.deletedCount > 0) {
                     const remaining = products.filter(product => product._id !== id)
                     setProducts(remaining)
+                    toast.success('Item Deleted Successfully')
                 }
             })
         }

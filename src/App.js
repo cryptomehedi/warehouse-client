@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Footer from "./Component/Common-Items/Footer";
 import Header from "./Component/Common-Items/Header";
 import NotFound from "./Component/Common-Items/NotFound";
@@ -13,6 +14,8 @@ import ManegeProduct from "./Component/Pages/PdAdd-Del/ManegeProduct";
 import PdAdd from "./Component/Pages/PdAdd-Del/PdAdd";
 import Stock from "./Component/Pages/StockProduct/Stock";
 import StockDet from "./Component/Pages/StockProduct/StockDet";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   return (
@@ -32,8 +35,10 @@ function App() {
           <Route path="/add" element={<RequireAuth><PdAdd/></RequireAuth>} />
           <Route path="/del" element={<RequireAuth><ManegeProduct/></RequireAuth>} />
         </Routes>
+        <ToastContainer />
       </div>
       <Footer/>
+      
     </div>
   );
 }

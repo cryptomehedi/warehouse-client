@@ -1,5 +1,8 @@
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Rating from 'react-rating';
 
 const Testimonial = () => {
     const [testimonials, setTestimonials] = useState([])
@@ -24,7 +27,12 @@ const Testimonial = () => {
                                             <div>
                                                 <p class="text-gray-600">"{testimonial.text}"</p>
                                                 <div class="text-gray-900 font-semibold uppercase mt-6">{testimonial.author}</div>
-                                                <div class="text-gray-600">Rating: {testimonial.rating}</div>
+                                                <Rating
+                                                    initialRating={testimonial.rating}
+                                                    emptySymbol={<FontAwesomeIcon icon={faStar} />}
+                                                    fullSymbol={<FontAwesomeIcon style={{color: 'gold'}} icon={faStar} />}
+                                                    readonly
+                                                ></Rating>
                                             </div>
                                         </div>
                                     </div>

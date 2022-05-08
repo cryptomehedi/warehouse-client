@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import axiosPrivate from '../../API/Axios';
 
@@ -27,7 +28,7 @@ const PdAdd = () => {
                         axiosPrivate.post('https://warehouse-api-ser.herokuapp.com/stock', {allPdInfo, userInfo})
                         setErrorStock('')
                         setErrorPrice('')
-                        alert('product added successfully')
+                        toast.success('product added successfully')
                         e.target.reset()
                     }else{
                         setErrorPrice('')

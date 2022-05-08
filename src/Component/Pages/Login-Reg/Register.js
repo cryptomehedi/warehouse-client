@@ -8,6 +8,7 @@ import Spinner from '../../Common-Items/Spinner';
 import SocialLogin from './SocialLogin';
 import { Helmet } from 'react-helmet-async';
 import useToken from '../../API/UseToken';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const [ createUserWithEmailAndPassword, user, loading, error1 ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification : true});
@@ -35,7 +36,7 @@ const Register = () => {
                 await  createUserWithEmailAndPassword(email , password)
                 await updateProfile({ displayName });
                 e.target.reset()
-                alert(`Congratulations ! "${displayName}" Please Confirm Your Email Address`)
+                toast.success(`Congratulations ! "${displayName}" Please Confirm Your Email Address`)
                 
             }else{
                 setErrorCon("Password Didn't Matched")

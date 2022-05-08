@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import axiosPrivate from '../../API/Axios';
 import Spinner from '../../Common-Items/Spinner';
@@ -42,10 +43,11 @@ const StockDet = () => {
                     stock = productDetails.stock + updateStock
                     setAvailable(false)
                 }else{
-                    return  alert("Update Stock Can't Be Negative")
+                    return  toast.error("Update Stock Can't Be Negative")
                 }
             }else{
                 stock = productDetails.stock + 1
+                toast.success("1 Product Added Successfully")
                 setAvailable(false)
             }
         }
@@ -55,13 +57,13 @@ const StockDet = () => {
         axiosPrivate.put(`https://warehouse-api-ser.herokuapp.com/stock/${productId}`, {delivery, userInfo} )
         if(e){
             if(quantity > 0){
-                alert('Product Delivery Successful')
+                toast.success('Product Delivery Successful')
             }
             else{
-                alert('Product Not Available for Delivery')
+                toast.error('Product Not Available for Delivery')
             }
         }else{
-            alert('Product Update Successful')
+            toast.success(stock < 2 ? `${stock} Product Added Successfully` : `${stock} Products Added Successfully`)
         }
         delivery.stock === 0 && setAvailable(true)
         setProductDetails(delivery)

@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import useToken from '../../API/UseToken';
 import Spinner from '../../Common-Items/Spinner';
@@ -31,7 +32,7 @@ const Login = () => {
         
         // toast("Wow so easy !")
         if(error1?.message < 5){
-            alert("Reset Password Email Sent")
+            toast.success("Reset Password Email Sent")
         }
     }
     if(token){

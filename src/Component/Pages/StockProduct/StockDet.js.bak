@@ -1,5 +1,4 @@
 
-
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -64,9 +63,7 @@ const StockDet = () => {
                 toast.error('Product Not Available for Delivery')
             }
         }else{
-            toast.success(stock < 2 ? `${stock} Product Added Successfully` : `${stock} Products Added Successfully`, {
-                
-            })
+            toast.success(stock < 2 ? `${stock} Product Added Successfully` : `${stock} Products Added Successfully`)
         }
         delivery.stock === 0 && setAvailable(true)
         setProductDetails(delivery)

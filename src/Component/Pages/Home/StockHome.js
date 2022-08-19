@@ -41,7 +41,7 @@ const StockHome = () => {
                         </div>
                     ))}
                 </div>
-                : <div className="text-center mt-9"><Spinner text='Please wait! Your product is Loading......'/></div>}
+                : <div className="text-center mt-9"><Spinner text='Please Wait! Product Is Loading......'/></div>}
             </div>
         </div>
     );

@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Footer from "./Component/Common-Items/Footer";
@@ -15,9 +16,21 @@ import PdAdd from "./Component/Pages/PdAdd-Del/PdAdd";
 import Stock from "./Component/Pages/StockProduct/Stock";
 import StockDet from "./Component/Pages/StockProduct/StockDet";
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 
 function App() {
+  useEffect(()=>{
+    axios.get('https://warehouse-api-ser.herokuapp.com')
+    // .then(response=>response.json())
+    .then(data=>{
+      // console.log(data.data);
+      if(data.data !== "Server running Successfully"){
+        window.location.reload();
+      }
+    })
+  },[]);
+
   return (
     <div>
       <Header/>
@@ -35,7 +48,7 @@ function App() {
           <Route path="/add" element={<RequireAuth><PdAdd/></RequireAuth>} />
           <Route path="/del" element={<RequireAuth><ManegeProduct/></RequireAuth>} />
         </Routes>
-        <ToastContainer />
+        <ToastContainer hideProgressBar={true} />
       </div>
       <Footer/>
       

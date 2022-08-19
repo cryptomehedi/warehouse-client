@@ -42,7 +42,7 @@ const Inventory = () => {
                     products.map(product => <div onClick={()=> navigateToServiceDetail(product._id)} className="my-5 cursor-pointer p-5 w-80 font-semibold bg-slate-400 rounded " key={product._id}>
                                             <div className='flex justify-evenly items-center'>
                                                 <div><img className='w-20 rounded-lg' src={product.img} alt="" /></div>
-                                                <div>
+                                                <div className='ml-2'>
                                                     <p>Name: {product.name}</p>
                                                     <p>Price: ${product.price}</p>
                                                     <p>{product.stock === 0 ? <span className='text-red-500 font-medium'>Sold Out</span> : <> Quantity:  {product.stock ===1 ?  <>{product.stock} Piece</> : <>{product.stock} Pieces</>}</>}</p>
@@ -52,7 +52,7 @@ const Inventory = () => {
                     )
                 }
             </div>
-            : <div className="text-center mt-9"><Spinner text='Please wait! Your product is Loading......'/></div>}
+            : <div className="text-center mt-9"><Spinner text='No Product Available ... Please wait! If You Have Added Any Product ......'/></div>}
         </div>
     );
 };

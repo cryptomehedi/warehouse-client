@@ -65,7 +65,7 @@ const ManegeProduct = () => {
                                                                 )
                                 }
                             </div>
-                            : <div className="text-center mt-9"><Spinner text='Please wait! Your product is Loading......'/></div>}
+                            : <div className="text-center mt-9"><Spinner text='Please wait! Product is Loading......'/></div>}
                         </div>
                     </div>
                 </div>

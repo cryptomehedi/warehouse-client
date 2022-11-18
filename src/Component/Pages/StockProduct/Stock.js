@@ -12,11 +12,11 @@ const Stock = () => {
     const [size] = useState(9)
     const [count, setCount] = useState(0)
     useEffect(() =>{
-        axios.get(`https://warehouse-api-ser.herokuapp.com/pagesPd?page=${page}&size=${size}`)
+        axios.get(`https://warehouse-server.onrender.com/pagesPd?page=${page}&size=${size}`)
         .then(data =>setProducts(data.data))
     },[page, size])
     useEffect(() => {
-        axios.get('https://warehouse-api-ser.herokuapp.com/allPdCount')
+        axios.get('https://warehouse-server.onrender.com/allPdCount')
         .then(data => {
             const count = data.data.count
             setCount(count)

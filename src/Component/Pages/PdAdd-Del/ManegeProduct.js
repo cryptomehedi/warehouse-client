@@ -15,7 +15,7 @@ const ManegeProduct = () => {
         const proceed = window.confirm('are you sure you want to delete this')
         if(proceed){
             
-            axios.delete(`https://warehouse-api-ser.herokuapp.com/stock/${id}`)
+            axios.delete(`https://warehouse-server.onrender.com/stock/${id}`)
             .then(data => {
                 if(data.data.deletedCount > 0) {
                     const remaining = products.filter(product => product._id !== id)

@@ -17,7 +17,7 @@ const Inventory = () => {
         const run = async() => {
             
             try{
-                const {data} = await axiosPrivate.get(`https://warehouse-api-ser.herokuapp.com/userAdd?email=${email}`)
+                const {data} = await axiosPrivate.get(`https://warehouse-server.onrender.com/userAdd?email=${email}`)
                 setProducts(data)
             }
             catch(error){

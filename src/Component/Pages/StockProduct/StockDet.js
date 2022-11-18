@@ -55,7 +55,7 @@ const StockDet = () => {
 
         const userInfo = user.email ? user.email : user.displayName
         const delivery = {img,name,price,seller,stock, description}
-        axiosPrivate.put(`https://warehouse-api-ser.herokuapp.com/stock/${productId}`, {delivery, userInfo} )
+        axiosPrivate.put(`https://warehouse-server.onrender.com/stock/${productId}`, {delivery, userInfo} )
         if(e){
             if(quantity > 0){
                 toast.success('Product Delivery Successful')
@@ -75,7 +75,7 @@ const StockDet = () => {
     const deleteProduct = id =>{
         const proceed = window.confirm('are you sure you want to delete this')
         if(proceed){
-            axios.delete(`https://warehouse-api-ser.herokuapp.com/stock/${id}`)
+            axios.delete(`https://warehouse-server.onrender.com/stock/${id}`)
             toast.success('Item Deleted Successfully')
             navigate(from, { replace: true })
         }

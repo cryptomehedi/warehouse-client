@@ -21,7 +21,7 @@ import axios from "axios";
 
 function App() {
   useEffect(()=>{
-    axios.get('https://warehouse-api-ser.herokuapp.com')
+    axios.get('https://warehouse-server.onrender.com')
     // .then(response=>response.json())
     .then(data=>{
       // console.log(data.data);

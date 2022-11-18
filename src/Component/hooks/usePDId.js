@@ -5,7 +5,7 @@ const usePDId = productId =>{
     const [productDetails, setProductDetails] = useState([])
 
     useEffect(() => {
-        axios.get(`https://warehouse-api-ser.herokuapp.com/stock/${productId}`)
+        axios.get(`https://warehouse-server.onrender.com/stock/${productId}`)
         .then(data => setProductDetails(data.data))
     },[productId])
     return [productDetails, setProductDetails]

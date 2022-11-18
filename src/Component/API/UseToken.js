@@ -8,7 +8,7 @@ const useToken = user =>{
         const run = async()=>{
             const email = user?.user?.email || user?.email
             if(email){
-                const {data} = await axios.post('https://warehouse-api-ser.herokuapp.com/user',{email})
+                const {data} = await axios.post('https://warehouse-server.onrender.com/user',{email})
                 setToken(data.accessToken)
                 localStorage.setItem('accessToken', data.accessToken)
             }

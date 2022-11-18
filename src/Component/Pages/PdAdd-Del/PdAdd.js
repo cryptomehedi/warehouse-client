@@ -25,7 +25,7 @@ const PdAdd = () => {
                 if(!isNaN(stock)){
                     if(stock > 0 ){
                         const allPdInfo = {img,name,userInfo,price,seller,stock,description}
-                        axiosPrivate.post('https://warehouse-api-ser.herokuapp.com/stock', {allPdInfo, userInfo})
+                        axiosPrivate.post('https://warehouse-server.onrender.com/stock', {allPdInfo, userInfo})
                         setErrorStock('')
                         setErrorPrice('')
                         toast.success('product added successfully')
